@@ -7,6 +7,17 @@ module.exports = {
     entry: './src/client/index.js',
     mode: 'development',
     devtool: 'source-map',
+    devServer: {
+        contentBase: './dist',
+        port: 8080,
+        injectClient: false
+    },
+    output: {
+        filename: 'main.js',
+        path: path.resolve(__dirname, 'dist'),
+        libraryTarget: 'var',
+        library: 'Client'
+    },
     stats: 'verbose',
     module: {
         rules: [
