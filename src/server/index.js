@@ -2,6 +2,7 @@ var path = require('path')
 const express = require('express')
 const dotenv = require('dotenv')
 const mockAPIResponse = require('./mockAPI.js')
+const axios = require('axios').default
 
 // Setup environment variables
 dotenv.config()
