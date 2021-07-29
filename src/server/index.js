@@ -42,3 +42,11 @@ app.get('/', function (req, res) {
 app.get('/test', function (req, res) {
     res.send(mockAPIResponse)
 })
+
+// Post routes
+const executeNlp = (req, res) => {
+    const text = req.body.text
+    console.log(text)
+}
+
+app.post('/test', executeNlp)
