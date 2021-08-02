@@ -1,5 +1,24 @@
-header {
+.page-header {
+    width: 100%;
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     justify-content: space-between;
     padding: 10px 40px;
+    color: #fff;
+}
+
+
+.logo {
+    font-size: 2em;
+    padding: 0.5em;
+    border-radius: 10px;
+    background: #444;
+}
+
+.menu {
+    margin: 0.5em;
+    padding: 0.5em;
+    border-radius: 10px;
+    background: #444;
 }
