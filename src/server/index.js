@@ -46,25 +46,59 @@ app.get('/test', function (req, res) {
 })
 
 // Post routes
-const executeNlp = (req, res) => {
+// functions
+// create response data for updating UI
+const updataUIResponse = (res) => {
+    const html = '<ul>' + 
+        '<li>score tag: ' + res.score_tag + '</li>' + 
+        '<li>agreement: ' + res.agreement + '</li>' + 
+        '<li>subjectivity: ' + res.subjectivity + '</li>' + 
+        '<li>confidence: ' + res.confidence + '</li>' + 
+        '<li>irony: ' + res.irony + '</li>' + 
+    '</ul>'
+    const apiResponse = {
+        'score_tag': res.score_tag,
+        'agreement': res.agreement,
+        'subjectivity': res.subjectivity,
+        'confidence': res.confidence,
+        'irony': res.irony,
+        'message': html
+    }
+
+    return apiResponse
+} 
+
+// interact with meaningcloud api and return NLP results
+const executeNlp = async (req) => {
     const text = req.body.text
-    console.log(text)
-    const formData = new FormData()
-    formData.append('key', apiKey)
-    formData.append('lang', 'en')
-    formData.append('txt', text)
-    const formHeaders = formData.getHeaders()
-    axios.post(apiUrl, formData, {
-        headers: {
-            ...formHeaders,
-        }
-    })
-    .then(response => {
-        console.log(response.data)
+    try {
+        const formData = new FormData()
+        formData.append('key', apiKey)
+        formData.append('lang', 'en')
+        formData.append('txt', text)
+        const formHeaders = formData.getHeaders()
+        const res = await axios.post(apiUrl, formData, {
+            headers: {
+                ...formHeaders,
+            }
+        })
+        return res.data
+    } catch (error) {
+        console.log('error', error)
+    }
+}
+
+// function for post request on /test
+const performAction = (req, res) => {
+    executeNlp(req)
+    .then(data => updataUIResponse(data))
+    .then(message => {
+        res.send(message)
     })
     .catch(error => {
         console.log('error', error)
     })
 }
 
-app.post('/test', executeNlp)
+// post response
+app.post('/test', performAction)
