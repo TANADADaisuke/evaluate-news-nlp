@@ -1,0 +1,9 @@
+.page-footer {
+    color: #fff;
+    width: 100%;
+    min-height: 50px;
+    background: #444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

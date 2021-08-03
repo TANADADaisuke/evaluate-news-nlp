@@ -20,8 +20,13 @@ main {
 .result {
     color: #fff;
     padding: 1em;
-    min-height: 150px;
+    min-height: 100px;
     background: #444;
     border-radius: 5px;
+}
+
+#results {
+    color: tomato;
+    margin: 5px 20px;
 }
 
