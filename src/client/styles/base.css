@@ -8,10 +8,11 @@ body {
 }
 
 main {
+    width: 85%;
     flex: 2;
 }
 
-section {
+.section {
     max-width: 800px;
     margin: 50px auto;
 }
