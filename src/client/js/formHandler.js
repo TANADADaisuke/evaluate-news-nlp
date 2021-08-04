@@ -25,6 +25,9 @@ async function handleSubmit(event) {
             console.log(res)
             document.getElementById('results').innerHTML = res.message
         })
+        .catch(error => {
+            alert('Connection fail!')
+        })
     }
 }
 
