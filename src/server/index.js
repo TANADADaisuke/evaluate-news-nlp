@@ -49,6 +49,12 @@ app.get('/test', function (req, res) {
 // functions
 // create response data for updating UI
 const updataUIResponse = (res) => {
+    if (res.status === false) {
+        const errorResponse = {
+            'success': false
+        }
+        return errorResponse
+    }
     const html = '<ul>' + 
         '<li>score tag: ' + res.score_tag + '</li>' + 
         '<li>agreement: ' + res.agreement + '</li>' + 
@@ -57,6 +63,7 @@ const updataUIResponse = (res) => {
         '<li>irony: ' + res.irony + '</li>' + 
     '</ul>'
     const apiResponse = {
+        'success': true,
         'score_tag': res.score_tag,
         'agreement': res.agreement,
         'subjectivity': res.subjectivity,
@@ -85,6 +92,10 @@ const executeNlp = async (req) => {
         return res.data
     } catch (error) {
         console.log('error', error)
+        const errorData = {
+            'status': false
+        }
+        return errorData
     }
 }
 

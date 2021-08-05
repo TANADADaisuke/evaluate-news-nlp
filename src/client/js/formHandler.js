@@ -22,8 +22,11 @@ async function handleSubmit(event) {
         .then(res => res.json())
         .then(function(res) {
             console.log("::: Response :::")
-            console.log(res)
-            document.getElementById('results').innerHTML = res.message
+            if (res.success === true) {
+                document.getElementById('results').innerHTML = res.message
+            } else {
+                alert('Fail to interact with meaningcloud API.')
+            }
         })
         .catch(error => {
             alert('Connection fail!')
