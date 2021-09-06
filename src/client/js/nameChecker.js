@@ -11,7 +11,8 @@ function checkForName(inputText) {
     const inputWords = inputText.split(' ')
     for (let i = 0; i < inputWords.length; i++) {
         if(names.includes(inputWords[i].replace('.', '').replace(',', ''))) {
-            alert("Welcome, Captain!")
+            window.alert("Welcome, Captain!")
+            return true
         }
     }
 }

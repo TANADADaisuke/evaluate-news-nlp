@@ -8,6 +8,12 @@ const TerserPlugin = require('terser-webpack-plugin')
 module.exports = {
     entry: './src/client/index.js',
     mode: 'production',
+    jest: {
+        "testEnvironment": "node",
+        "coveragePathIgnorePatterns": [
+            "/node_modules/"
+        ]
+    },
     output: {
         filename: 'main.js',
         path: path.resolve(__dirname, 'dist'),
